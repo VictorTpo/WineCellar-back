@@ -12,6 +12,8 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    def response_body
+      @_response_body ||= ::JSON.parse(response.body)
+    end
   end
 end

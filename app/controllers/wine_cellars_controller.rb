@@ -10,6 +10,11 @@ class WineCellarsController < ApplicationController
     end
   end
 
+  def show
+    @wine_cellar = WineCellar.find_by(id: params[:id])
+    return head :not_found unless @wine_cellar
+  end
+
   private
 
   def wine_cellar_params

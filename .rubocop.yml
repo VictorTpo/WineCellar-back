@@ -6,3 +6,5 @@ AllCops:
 
 Documentation:
   Enabled: false
+EnforcedStyleForLeadingUnderscores
+  Enabled: true
