@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_172837) do
+ActiveRecord::Schema.define(version: 2021_12_23_220252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,4 +34,14 @@ ActiveRecord::Schema.define(version: 2021_12_23_172837) do
     t.index ["name"], name: "index_bottles_on_name"
   end
 
+  create_table "wine_cellars", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_wine_cellars_on_account_id"
+    t.index ["name"], name: "index_wine_cellars_on_name"
+  end
+
+  add_foreign_key "wine_cellars", "accounts"
 end
