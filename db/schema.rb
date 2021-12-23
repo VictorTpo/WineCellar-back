@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_122353) do
+ActiveRecord::Schema.define(version: 2021_12_23_172837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "google_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["google_id"], name: "index_accounts_on_google_id", unique: true
+  end
 
   create_table "bottles", force: :cascade do |t|
     t.string "name", null: false
