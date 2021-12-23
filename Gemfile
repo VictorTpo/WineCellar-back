@@ -10,7 +10,6 @@ gem 'jbuilder'
 gem 'pg'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.0'
-gem 'rubocop'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -20,10 +19,13 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubocop'
 end
 
 group :test do
   gem 'capybara'
+  gem 'minitest-focus'
+  gem 'minitest-spec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
