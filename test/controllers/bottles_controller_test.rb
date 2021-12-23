@@ -12,7 +12,7 @@ class BottlesControllerTest < ActionDispatch::IntegrationTest
       assert_equal 'wine', bottle.name
     end
 
-    it 'returns a 500 if no name' do
+    it 'returns a 400 if no name' do
       post '/bottles', params: { name: '' }
       assert_response :bad_request
       assert_nil Bottle.last

@@ -3,4 +3,5 @@
 Rails.application.routes.draw do
   resources :accounts, only: :create
   resources :bottles, only: :create
+  resources :wine_cellars, only: :create
 end

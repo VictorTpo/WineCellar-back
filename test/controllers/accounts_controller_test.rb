@@ -18,7 +18,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
       assert account
     end
 
-    it 'returns a 500 if missing some params' do
+    it 'returns a 400 if missing some params' do
       post '/accounts', params: { email: 'new@mail.com' }
       assert_response :bad_request
       assert_nil Account.find_by(email: 'new@mail.com')
