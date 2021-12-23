@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: wine_back_dev
+  database: wine_cellar_dev
 
 test:
   <<: *default
-  database: wine_back_test
+  database: wine_cellar_test
 
 production:
   <<: *default
-  database: wine_back_prod
+  database: wine_cellar_prod
