@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  password:
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  username: postgres
+
+development:
+  <<: *default
+  database: wine_back_dev
+
+test:
+  <<: *default
+  database: wine_back_test
+
+production:
+  <<: *default
+  database: wine_back_prod
