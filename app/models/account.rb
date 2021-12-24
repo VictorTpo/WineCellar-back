@@ -5,6 +5,6 @@ class Account < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
-  validates :google_id, uniqueness: true
   validates :last_name, presence: true
+  validates_uniqueness_of :google_id, conditions: -> { where.not(google_id: nil) }
 end

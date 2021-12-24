@@ -1,4 +1,3 @@
 # frozen_string_literal: true
 
-json.id @wine_cellar.id
-json.name @wine_cellar.name
+json.partial! 'wine_cellars/wine_cellar', wine_cellar: @wine_cellar

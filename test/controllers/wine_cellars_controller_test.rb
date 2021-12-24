@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class WineCellarsControllerTest < ActionDispatch::IntegrationTest
+  let(:account) { FactoryBot.create(:account, id: 12) }
+
   describe '#create' do
     it 'returns a 200 with correct params' do
       account = FactoryBot.create(:account, id: 12)
@@ -32,6 +34,25 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
     it 'returns a 404 if it does not exist' do
       get '/wine_cellars/12'
       assert_response :not_found
+    end
+  end
+
+  describe '#index' do
+    focus
+    it 'returns a 200 if there is some' do
+      FactoryBot.create(:wine_cellar, name: 'a wc name')
+      3.times { FactoryBot.create(:wine_cellar, account: account) }
+      FactoryBot.create(:wine_cellar)
+      get '/wine_cellars'
+      assert_response :success
+      assert_equal 4, response_body.size
+      assert_equal 'a wc name', response_body.first['name']
+    end
+
+    it 'returns an empty array if no result' do
+      get '/wine_cellars'
+      assert_response :success
+      assert_equal 0, response_body.size
     end
   end
 end

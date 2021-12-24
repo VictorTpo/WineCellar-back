@@ -16,6 +16,10 @@ class WineCellarsController < ApplicationController
     return head :not_found unless @wine_cellar
   end
 
+  def index
+    @wine_cellars = WineCellar.all
+  end
+
   private
 
   def wine_cellar_params
