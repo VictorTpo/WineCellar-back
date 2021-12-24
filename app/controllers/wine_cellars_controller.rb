@@ -5,6 +5,7 @@ class WineCellarsController < ApplicationController
     wine_cellar = WineCellar.new(wine_cellar_params)
     if wine_cellar.valid?
       wine_cellar.save
+      render json: { name: wine_cellar.name }, status: 201
     else
       render_errors(wine_cellar)
     end

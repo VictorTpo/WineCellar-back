@@ -5,9 +5,10 @@ require 'test_helper'
 class AccountsControllerTest < ActionDispatch::IntegrationTest
   describe '#create' do
     it 'returns a 200 if account already exists' do
-      FactoryBot.create(:account, email: 'existing@mail.com')
+      FactoryBot.create(:account, email: 'existing@mail.com', id: 12)
       post '/accounts', params: { email: 'existing@mail.com' }
       assert_response :success
+      assert_equal 12, response_body['id']
     end
 
     it 'returns 200 and creates an account if everything is ok' do
@@ -16,6 +17,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
       account = Account.find_by(email: 'new@mail.com')
       assert account
+      assert_equal account.id, response_body['id']
     end
 
     it 'returns a 400 if missing some params' do
