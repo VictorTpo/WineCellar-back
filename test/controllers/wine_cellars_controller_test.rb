@@ -11,6 +11,7 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
       wine_cellar = WineCellar.find_by(name: 'my first cellar')
       assert wine_cellar
       assert_equal account, wine_cellar.account
+      assert_equal 'my first cellar', response_body['name']
     end
 
     it 'returns a 400 if missing params' do
