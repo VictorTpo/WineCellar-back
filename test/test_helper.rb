@@ -27,7 +27,7 @@ module ActiveSupport
     def headers_for_account
       default_account
       payload = { account_id: default_account.id }
-      token = JWT.encode( payload, Figaro.env.jwt_secret!, ApplicationController::JWT_ALGORITHM)
+      token = JWT.encode(payload, Figaro.env.jwt_secret!, ApplicationController::JWT_ALGORITHM)
       {
         'Authorization' => "Bearer #{token}",
         'Content-Type' => 'application/json',

@@ -12,6 +12,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    google_id { 12121212 }
+    google_id { 12_121_212 }
   end
 end

@@ -21,11 +21,11 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     JWT.encode(
       payload,
       Figaro.env.jwt_secret,
-      ApplicationController::JWT_ALGORITHM,
+      ApplicationController::JWT_ALGORITHM
     )
   end
 
-  def headers(token=build_jwt_token)
+  def headers(token = build_jwt_token)
     {
       'Authorization' => "Bearer #{token}",
       'Content-Type' => 'application/json',
