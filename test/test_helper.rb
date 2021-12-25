@@ -26,13 +26,7 @@ module ActiveSupport
 
     def headers_for_account
       default_account
-      now = Time.current
-      payload = {
-        account_id: default_account.id,
-        iat: now.to_i,
-        exp: (now + 24.hours).to_i,
-        nbf: (now - 1.minute).to_i
-      }
+      payload = { account_id: default_account.id }
       token = JWT.encode( payload, Figaro.env.jwt_secret!, ApplicationController::JWT_ALGORITHM)
       {
         'Authorization' => "Bearer #{token}",
