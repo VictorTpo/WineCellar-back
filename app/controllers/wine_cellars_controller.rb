@@ -16,6 +16,10 @@ class WineCellarsController < ApplicationController
     return head :not_found unless @wine_cellar
   end
 
+  def index
+    render json: [], status: 200
+  end
+
   private
 
   def wine_cellar_params
