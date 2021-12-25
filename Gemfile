@@ -5,8 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 
+gem 'figaro'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'jwt'
 gem 'pg'
 gem 'puma', '~> 5.0'
 gem 'rack-cors'
@@ -17,6 +19,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'mocha'
   gem 'pry-byebug'
 end
 
