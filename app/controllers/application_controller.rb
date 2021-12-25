@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_token do |jwt, _options|
       decoded_payload = JWT.decode(jwt, Figaro.env.jwt_secret, algorithm: JWT_ALGORITHM)
       content_payload = decoded_payload.first
-      set_current_account(content_payload['account_id'])
+      current_account!(content_payload['account_id'])
     end
   rescue JWT::ExpiredSignature, JWT::ImmatureSignature, JWT::VerificationError, JWT::DecodeError
     head :unauthorized
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_current_account(account_id)
+  def current_account!(account_id)
     @_current_account = Account.find(account_id)
   end
 end
