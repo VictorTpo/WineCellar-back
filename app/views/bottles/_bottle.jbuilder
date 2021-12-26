@@ -2,4 +2,7 @@
 
 json.id bottle.id
 json.name bottle.name
-json.wine_cellar_id bottle.wine_cellar_id
+json.wine_cellar do
+  json.id bottle.wine_cellar.id
+  json.name bottle.wine_cellar.name
+end
