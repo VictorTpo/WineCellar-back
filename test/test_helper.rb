@@ -21,7 +21,7 @@ module ActiveSupport
 
     def default_account
       @_default_account ||=
-        (Account.find_by(id: DEFAULT_ACCOUNT_ID) || FactoryBot.create(:default_account))
+        (Account.find_by(id: DEFAULT_ACCOUNT_ID) || FactoryBot.create(:account__d))
     end
 
     def headers_for_account
