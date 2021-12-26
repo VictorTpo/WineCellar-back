@@ -2,6 +2,7 @@
 
 class WineCellar < ActiveRecord::Base
   belongs_to :account, inverse_of: :wine_cellars
+  has_many :bottles, inverse_of: :wine_cellar
 
   validates :name, presence: true
 end
