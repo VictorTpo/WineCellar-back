@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class WineCellarsControllerTest < ActionDispatch::IntegrationTest
+  let(:account__d) { FactoryBot.create(:account__d) }
+
   describe '#create' do
     it 'returns a 200 with correct params' do
       post__c '/wine_cellars', params: { name: 'my first cellar' }
@@ -21,8 +23,10 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe '#update' do
+    let(:wine_cellar) { FactoryBot.create(:wine_cellar__d, id: 12, name: 'original name') }
+
     it 'returns a 200 with correct params' do
-      wine_cellar = FactoryBot.create(:wine_cellar, id: 12, name: 'name_1', account: default_account)
+      wine_cellar
       patch__c '/wine_cellars/12', params: { name: 'another name' }
       assert_response :success
       wine_cellar.reload
@@ -30,11 +34,11 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
     end
 
     it 'returns a 400 if missing params' do
-      wine_cellar = FactoryBot.create(:wine_cellar, id: 12, name: 'name_1', account: default_account)
+      wine_cellar
       patch__c '/wine_cellars/12', params: { name: '' }
       assert_response :bad_request
       wine_cellar.reload
-      assert_equal 'name_1', wine_cellar.name
+      assert_equal 'original name', wine_cellar.name
     end
   end
 
@@ -54,8 +58,8 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
 
   describe '#index' do
     it 'returns a 200 if there is some' do
-      FactoryBot.create(:wine_cellar, name: 'a wc name', account: default_account)
-      3.times { FactoryBot.create(:wine_cellar, account: default_account) }
+      FactoryBot.create(:wine_cellar__d, name: 'a wc name', account: account__d)
+      3.times { FactoryBot.create(:wine_cellar__d, account: account__d) }
       FactoryBot.create(:wine_cellar)
       get__c '/wine_cellars'
       assert_response :success

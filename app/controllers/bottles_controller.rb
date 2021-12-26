@@ -13,6 +13,10 @@ class BottlesController < ApplicationController
     end
   end
 
+  def index
+    @bottles = current_account.bottles
+  end
+
   def show
     @bottle = current_account.bottles.find_by(id: params[:id])
     return head :bad_request unless @bottle

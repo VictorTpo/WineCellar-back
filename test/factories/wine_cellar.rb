@@ -5,4 +5,9 @@ FactoryBot.define do
     name { Faker::Lorem.word }
     association :account
   end
+
+  factory :wine_cellar__d, class: 'WineCellar' do
+    name { Faker::Lorem.word }
+    association :account, factory: :account__d
+  end
 end
