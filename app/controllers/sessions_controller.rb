@@ -14,9 +14,7 @@ class SessionsController < ApplicationController
 
     return head :unauthorized unless account
 
-    payload = { account_id: account.id }
-
-    token = JWT.encode(payload, Figaro.env.jwt_secret, ApplicationController::JWT_ALGORITHM)
+    token = Session.new(account.id).generate_jwt_token
     render json: { token: token }, status: 200
   end
 end
