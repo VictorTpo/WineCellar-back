@@ -6,5 +6,8 @@ AllCops:
 
 Documentation:
   Enabled: false
-EnforcedStyleForLeadingUnderscores
+Naming/MemoizedInstanceVariableName:
   Enabled: true
+  EnforcedStyleForLeadingUnderscores: optional
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

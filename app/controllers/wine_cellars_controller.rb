@@ -2,7 +2,7 @@
 
 class WineCellarsController < ApplicationController
   def create
-    wine_cellar = WineCellar.new(wine_cellar_params)
+    wine_cellar = current_account.wine_cellars.new(wine_cellar_params)
     if wine_cellar.valid?
       wine_cellar.save
       render json: { name: wine_cellar.name }, status: 201
@@ -17,12 +17,12 @@ class WineCellarsController < ApplicationController
   end
 
   def index
-    render json: [], status: 200
+    @wine_cellars = current_account.wine_cellars
   end
 
   private
 
   def wine_cellar_params
-    params.permit(:name, :account_id)
+    params.permit(:name)
   end
 end

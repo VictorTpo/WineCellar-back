@@ -5,7 +5,7 @@ require 'test_helper'
 class BottlesControllerTest < ActionDispatch::IntegrationTest
   describe '#create' do
     it 'creates a bottle and returns an id' do
-      post '/bottles', params: { name: 'wine' }
+      post__c '/bottles', params: { name: 'wine' }
       assert_response :success
       bottle = Bottle.last
       assert bottle
@@ -13,7 +13,7 @@ class BottlesControllerTest < ActionDispatch::IntegrationTest
     end
 
     it 'returns a 400 if no name' do
-      post '/bottles', params: { name: '' }
+      post__c '/bottles', params: { name: '' }
       assert_response :bad_request
       assert_nil Bottle.last
     end

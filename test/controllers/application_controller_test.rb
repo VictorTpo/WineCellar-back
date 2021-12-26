@@ -3,8 +3,6 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionDispatch::IntegrationTest
-  before { ApplicationController.any_instance.unstub(:authenticate) }
-
   it 'authenticates when JWT is correct' do
     FactoryBot.create(:account, id: 12)
     get '/wine_cellars', headers: headers
@@ -19,16 +17,15 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
   private
 
   def build_jwt_token
-    now = Time.current
     payload = { account_id: 12 }
     JWT.encode(
       payload,
       Figaro.env.jwt_secret,
-      ApplicationController::JWT_ALGORITHM,
+      ApplicationController::JWT_ALGORITHM
     )
   end
 
-  def headers(token=build_jwt_token)
+  def headers(token = build_jwt_token)
     {
       'Authorization' => "Bearer #{token}",
       'Content-Type' => 'application/json',
