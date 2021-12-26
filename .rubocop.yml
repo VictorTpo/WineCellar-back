@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - "app/view/**/*"
     - "db/schema.rb"
+    - "db/migrate/**/*"
   TargetRubyVersion: 2.5.1
 
 Documentation:
