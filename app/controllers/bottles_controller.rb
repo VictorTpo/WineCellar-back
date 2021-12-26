@@ -24,10 +24,14 @@ class BottlesController < ApplicationController
 
   def update
     bottle = current_account.bottles.find_by(id: params[:id])
-    wine_cellar = current_account.wine_cellars.find_by(id: params[:wine_cellar_id])
-    return head :bad_request unless bottle && wine_cellar
+    return head :bad_request unless bottle
 
-    bottle.update(bottle_params.merge(wine_cellar_id: params[:wine_cellar_id]))
+    if params[:wine_cellar_id]
+      wine_cellar = current_account.wine_cellars.find_by(id: params[:wine_cellar_id])
+      return head :bad_request unless wine_cellar
+    end
+
+    bottle.update(bottle_params)
     if bottle.valid?
       bottle.save
     else
@@ -38,6 +42,6 @@ class BottlesController < ApplicationController
   private
 
   def bottle_params
-    params.permit(:name)
+    params.permit(:name, :counter, :wine_cellar_id)
   end
 end
