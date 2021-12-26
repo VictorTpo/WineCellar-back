@@ -3,16 +3,15 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate
 
-  def new
-    if params[:account_id]
-      # todo
+  def create
+    @account = Account.find_by(email: params[:email])
+    return head :unauthorized unless @account
+
+    if @account.authenticate(params[:password])
+      @jwt_token = Session.new(@account.id).generate_jwt_token
+      render
     else
-      return head :unauthorized
+      head :unauthorized
     end
-
-    return head :unauthorized unless account
-
-    token = Session.new(account.id).generate_jwt_token
-    render json: { token: token }, status: 200
   end
 end
