@@ -40,7 +40,7 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
 
   describe '#show' do
     it 'returns a 200 if it exists' do
-      FactoryBot.create(:wine_cellar, id: 12, name: 'my cellar')
+      FactoryBot.create(:wine_cellar, id: 12, name: 'my cellar', account: default_account)
       get__c '/wine_cellars/12'
       assert_response :success
       assert_equal 'my cellar', response_body['name']
