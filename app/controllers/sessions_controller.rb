@@ -6,8 +6,6 @@ class SessionsController < ApplicationController
   def new
     if params[:account_id]
       # todo
-    elsif params[:google_id]
-      account = Account.find_by(google_id: params[:google_id])
     else
       return head :unauthorized
     end
