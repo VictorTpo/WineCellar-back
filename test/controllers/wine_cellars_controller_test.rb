@@ -20,6 +20,24 @@ class WineCellarsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  describe '#update' do
+    it 'returns a 200 with correct params' do
+      wine_cellar = FactoryBot.create(:wine_cellar, id: 12, name: 'name_1', account: default_account)
+      patch__c '/wine_cellars/12', params: { name: 'another name' }
+      assert_response :success
+      wine_cellar.reload
+      assert_equal 'another name', wine_cellar.name
+    end
+
+    it 'returns a 400 if missing params' do
+      wine_cellar = FactoryBot.create(:wine_cellar, id: 12, name: 'name_1', account: default_account)
+      patch__c '/wine_cellars/12', params: { name: '' }
+      assert_response :bad_request
+      wine_cellar.reload
+      assert_equal 'name_1', wine_cellar.name
+    end
+  end
+
   describe '#show' do
     it 'returns a 200 if it exists' do
       FactoryBot.create(:wine_cellar, id: 12, name: 'my cellar')

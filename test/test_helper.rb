@@ -38,6 +38,10 @@ module ActiveSupport
       post url, params: params.to_json, headers: headers
     end
 
+    def patch__c(url, params: {}, headers: headers_for_account)
+      patch url, params: params.to_json, headers: headers
+    end
+
     def get__c(url, headers: headers_for_account)
       get url, headers: headers
     end

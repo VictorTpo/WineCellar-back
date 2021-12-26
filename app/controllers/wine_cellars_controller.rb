@@ -12,12 +12,23 @@ class WineCellarsController < ApplicationController
   end
 
   def show
-    @wine_cellar = WineCellar.find_by(id: params[:id])
+    @wine_cellar = current_account.wine_cellars.find_by(id: params[:id])
     return head :not_found unless @wine_cellar
   end
 
   def index
     @wine_cellars = current_account.wine_cellars
+  end
+
+  def update
+    wine_cellar = current_account.wine_cellars.find_by(id: params[:id])
+    wine_cellar.update(wine_cellar_params)
+    if wine_cellar.valid?
+      wine_cellar.save
+      head :ok
+    else
+      render_errors(wine_cellar)
+    end
   end
 
   private
