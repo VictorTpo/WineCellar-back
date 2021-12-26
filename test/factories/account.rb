@@ -5,6 +5,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
+    password { Faker::Internet.password }
   end
 
   factory :account__d, class: 'Account' do
@@ -12,6 +13,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    google_id { 012_012_012 }
+    password { Faker::Internet.password }
   end
 end
