@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Account < ActiveRecord::Base
-  has_many :wine_cellars, inverse_of: :account
+  has_many :wine_cellars, inverse_of: :account, dependent: :destroy
   has_many :bottles, through: :wine_cellars
 
   validates :email, presence: true, uniqueness: true
