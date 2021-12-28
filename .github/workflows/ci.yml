@@ -41,6 +41,7 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           PGPASSWORD: postgres
+          jwt_secret: 12345
         run: bundle exec rails test
 
 
