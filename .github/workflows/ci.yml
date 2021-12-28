@@ -11,9 +11,9 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USER: root
+          POSTGRES_USER: postgres
           POSTGRES_DB: wine_cellar_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: postgres
         ports: ["5432:5432"]
     steps:
       - name: Checkout code
