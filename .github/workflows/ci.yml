@@ -20,7 +20,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          - 5432:5432
+          - 5432/tcp
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,11 +31,11 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
+          PGHOST: 127.0.0.1
           PGUSER: postgres
           PGPASSWORD: postgres
         run: bin/rails db:setup
       - name: Run tests
-        run: bin/rails bundle exec rails test
+        run: bundle exec rails test
 
 
