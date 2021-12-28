@@ -1,0 +1,31 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:11
+        ports: ['5432:5432']
+        env:
+          POSTGRES_USER: WinceCellar-back
+          POSTGRES_DB: wine_cellar_test
+          POSTGRES_PASSWORD: ''
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Setup Ruby and install gems
+          uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
+        - name: Setup test database
+          env:
+            RAILS_ENV: test
+            PGHOST: localhost
+            PGUSER: myapp
+          run: |
+            bin/rails db:setup
+        - name: Run tests
+          run: bin/test
+
+
