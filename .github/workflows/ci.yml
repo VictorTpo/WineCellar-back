@@ -7,6 +7,14 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: root
+          POSTGRES_DB: wine_cellar_test
+          POSTGRES_PASSWORD: ""
+        ports: ["5432:5432"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
