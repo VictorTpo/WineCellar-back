@@ -15,7 +15,7 @@ test:
   database: wine_cellar_test
   username: <%= ENV['PGUSER'] %>
   password: <%= ENV['PGPASSWORD'] %>
-  host: localhost
+  host: <%= ENV['PGHOST'] %>
   pool: 5
 
 production:
